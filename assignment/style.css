@@ -1,0 +1,57 @@
+body{
+    background-color: #112d46;
+    color: white;
+    font-family: Arial,sans-serif;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.main-container{
+    height: 80vh;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+
+}
+h2{
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.forecast{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.day{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1B425D;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    border-radius: 8px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    
+}
+.day p{
+    padding-left: 29px;
+}
+.icon{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    
+}
+.sunny{
+    background-color: yellow;
+}
+.cloudy{
+    background-color: gray;
+}
