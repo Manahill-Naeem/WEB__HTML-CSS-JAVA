@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+    <div class="header">
+        <h1 class="header">Movie Collection</h1>
+    </div>
+    <div class="hero-section">
+        <div class="box">
+            <div class="heading"><h2>Movie Collection with Images</h2></div>
+            <div class="input"><input id="title" type="text" placeholder="Enter movie title"></div>
+            <div class="input"><input id="publisher" type="text" placeholder="Enter Publisher"></div>
+            <div class="input"><input id="img" type="text" placeholder="Enter image URL"></div>
+
+            <div><button id="addMovie" class="btn1">Add Movie</button></div>
+            <div><button id="clearMovie" class="btn2">Clear All Movies</button></div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        let addMovie = document.getElementById('addMovie')
+        let clearMovie = document.getElementById('clearMovie')
+
+        addMovie.addEventListener('click', addMovies)
+        function addMovies(){
+            let title = document.getElementById('title').value
+            let publisher = document.getElementById('publisher').value
+            let image = document.getElementById('img').value
+
+            if(!title || !publisher || !image){
+                alert('Please enter all values')
+                    return
+            }
+            
+                }
+
+        
+        
+
+    </script>
+    
+</body>
+</html>
