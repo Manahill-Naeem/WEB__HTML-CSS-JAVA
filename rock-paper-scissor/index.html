@@ -1,0 +1,156 @@
+<!-- Step 1: Basic HTML Structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- Game Ka Display (HTML Buttons) -->
+
+    <p>Rock Paper Scissors</p>
+    <button onclick="playGame('Rock')">Rock</button>
+    <button onclick="playGame('Paper')">Paper</button>
+    <button onclick="playGame('Scissors')">Scissors</button>
+    <button onclick="resetScore()">Reset Score</button>
+
+<!-- <p>Rock Paper Scissors</p> → Ek heading jo game ka naam batati hai. -->
+<!-- <button onclick="playGame('Rock')">Rock</button> → Jab user "Rock" button dabayega, playGame('Rock') function chalega. -->
+<!-- Same cheez "Paper" aur "Scissors" ke buttons ke saath hai. -->
+<!-- <button onclick="resetScore()">Reset Score</button> → Jab ye button click hoga, resetScore() function score ko reset karega. -->
+
+<!-- Step 3: JavaScript Code -->
+
+<script>
+    let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, draws: 0 };
+    // let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, draws: 0 };
+    // localStorage.getItem('score') => Browser storage se previous score nikalne ki koshish karta hai.
+    //  JSON.parse(...) => Kyunki local storage text format mein hoti hai, isko object mein convert karna zaroori hai.
+    // Agar koi pehle ka score nahi mila to 
+    // { wins: 0, losses: 0, draws: 0 } 
+    // default value set ho jati hai.
+
+// Step 4: Score Reset Function
+
+function resetScore() {
+    score.wins = 0;
+    score.losses = 0;
+    score.draws = 0;
+    localStorage.removeItem('score');
+}
+
+// score.wins = 0; → Wins ko reset karta hai.
+// score.losses = 0; → Losses ko reset karta hai.
+// score.draws = 0; → Draws ko reset karta hai.
+// localStorage.removeItem('score'); → Browser storage se score delete kar deta hai.
+
+
+// Step 5: Game Logic (playGame Function)
+
+function playGame(playerMove) {
+    const computerMove = pickComputerMove();
+    let result = "";
+}
+// function playGame(playerMove) { ... } → Ye function user ke move ke mutabiq game ka result calculate karega.
+// const computerMove = pickComputerMove(); → Ye computer ka random move generate karega.
+// let result = ""; → Result store karne ke liye ek empty string banai.
+
+
+// Step 6: Game Rules
+
+if (playerMove === "Rock") {
+    if (computerMove === "Rock") {
+        result = "tie";
+    }
+    if (computerMove === "Paper") {
+        result = "lose";
+    }
+    if (computerMove === "Scissors") {
+        result = "win";
+    }
+} else if (playerMove === "Paper") {
+    if (computerMove === "Rock") {
+        result = "win";
+    }
+    if (computerMove === "Paper") {
+        result = "tie";
+    }
+    if (computerMove === "Scissors") {
+        result = "lose";
+    }
+} else if (playerMove === "Scissors") {
+    if (computerMove === "Rock") {
+        result = "lose";
+    }
+    if (computerMove === "Paper") {
+        result = "win";
+    }
+    if (computerMove === "Scissors") {
+        result = "tie";
+    }
+}
+
+// Yahan per Rock, Paper, Scissors ke rules implement kiye gaye hain.
+// Agar player aur computer ka move same ho to "tie".
+// Paper > Rock, Rock > Scissors, Scissors > Paper → Ye winning rules follow ho rahe hain.
+
+// Step 7: Score Update
+
+if (result === "win") {
+    score.wins += 1;
+} else if (result === "tie") {
+    score.draws += 1;
+} else {
+    score.losses += 1;
+}
+
+// Agar player jeet gaya to score.wins += 1;
+// Agar tie ho gaya to score.draws += 1;
+// Agar haar gaya to score.losses += 1;
+
+
+// Step 8: Score Save in Local Storage
+
+let results = JSON.stringify(score);
+localStorage.setItem('score', results);
+
+// JSON.stringify(score) → Score ko text format mein convert karta hai.
+// localStorage.setItem('score', results); → Ye score ko browser storage mein save karta hai taake refresh ke baad bhi score na ude.
+
+
+// Step 9: Alert Message Show Karna
+
+alert(
+    `You picked ${playerMove}. Computer picked ${computerMove}. Result: ${result} \n Wins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`
+);
+
+// Ye ek alert show karega jo batayega ke player aur computer ne kya choose kiya aur result kya aaya.
+
+
+// Step 10: Computer Move Generate Karna
+
+function pickComputerMove() {
+    const randomNumber = Math.random();
+    let computerMove = "";
+
+    if (randomNumber >= 0 && randomNumber < 1 / 3) {
+        computerMove = "Rock";
+    } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+        computerMove = "Paper";
+    } else {
+        computerMove = "Scissors";
+    }
+
+    return computerMove;
+}
+
+// Math.random(); 
+// Ye ek random number 0 aur 1 ke beech generate karta hai.
+// Agar number 0 - 1/3 ke beech hai to "Rock".
+// Agar number 1/3 - 2/3 ke beech hai to "Paper".
+// Agar number 2/3 - 1 ke beech hai to "Scissors".
+</script>    
+</body>
+</html>
