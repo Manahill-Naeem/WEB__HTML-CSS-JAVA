@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+
+
+
+    <input type="text" placeholder="Enter your text here" id="input">
+    <button id="btn">Add Task</button>
+    <div id="tasks"></div>
+
+    <script>
+        let inputField = document.getElementById("input");
+        let addButton = document.getElementById("btn");
+        let tasksContainer = document.getElementById("tasks");
+
+        addButton.addEventListener("click", function() {
+            let taskText = inputField.value;
+            if (taskText === "") return;
+
+            let newTask = document.createElement("p");
+            newTask.innerText = taskText;
+
+            let deleteButton = document.createElement("button");
+            deleteButton.innerText = "";
+            deleteButton.addEventListener("click", function() {
+                tasksContainer.removeChild(newTask);
+            });
+
+            newTask.appendChild(deleteButton);
+            tasksContainer.appendChild(newTask);
+            inputField.value = "";
+        });
+    </script>
+</body>
+</html>
